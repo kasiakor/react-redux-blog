@@ -84,7 +84,8 @@ export const fetchPostAction = (id) => {
     dispatch(fetchPostRequest());
     try {
       //get data from the api
-      const response = await axios.get(`apiURL/${id}`);
+      const response = await axios.get(`${apiURL}/${id}`);
+
       // dispatch success
       dispatch(fetchPostSuccess(response.data));
     } catch (error) {

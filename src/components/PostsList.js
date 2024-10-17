@@ -12,18 +12,21 @@ const PostsList = () => {
     // eslint-disable-next-line
   }, []);
 
-  const { loading, error, posts, post } = useSelector((data) => data);
+  const { loading, error, posts } = useSelector((data) => data);
 
-  console.log("data", loading, error, posts, post);
   return (
     <>
       <SearchPost />
       <div className="posts-list">
         <h1>Total Posts {posts.length}</h1>
         {loading && <h2>Loading...</h2>}
-        {error && <h2>Something went wrong {error}</h2>}
+        {error && (
+          <h2 style={{ color: "red" }}>
+            {error.response.status && "Post Not Found"}
+          </h2>
+        )}
         {posts.map((post) => (
-          <div className="post-details">
+          <div className="post-details" key={post.id}>
             <h3>{post.title}</h3>
             <p>{post.body}</p>
           </div>

@@ -44,7 +44,7 @@ export const postReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        post: action.payload,
+        posts: [action.payload],
       };
     case SEARCH_POST_FAILED:
       return {

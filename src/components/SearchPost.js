@@ -1,11 +1,20 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { fetchPostAction } from "../redux/actions/postActions";
 import "./Form.css";
+
 const SearchPost = () => {
+  // instance of dispatch
+  const dispatch = useDispatch();
   //search form state
   const [search, setSearch] = React.useState("");
   //search form submit handler
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    if (search === "") {
+      return alert("Please enter value <= 100");
+    }
+    dispatch(fetchPostAction(search));
   };
 
   return (
@@ -22,7 +31,7 @@ const SearchPost = () => {
           placeholder="Search for a post"
           type="text"
           value={search}
-          onChange={e => setSearch(e.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
         />
         <button type="submit">Search</button>
       </form>
